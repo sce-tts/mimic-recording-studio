@@ -3,3 +3,6 @@ flask-cors
 peewee
 pydub
 gunicorn
+hgtk
+six
+pydub
