@@ -30,7 +30,7 @@ class Record extends Component {
       totalTime: 0,
       totalCharLen: 0,
       audioLen: 0,
-      showPopup: true
+      showPopup: false
     };
 
     this.uuid = getUUID();
@@ -90,11 +90,11 @@ class Record extends Component {
               this.state.shouldRecord
                 ? "btn-disabled"
                 : this.state.blob === undefined
-                ? "btn-disabled"
-                : this.state.play
-                ? "btn-disabled"
-                : null
-            } `}
+                  ? "btn-disabled"
+                  : this.state.play
+                    ? "btn-disabled"
+                    : null
+              } `}
             onClick={this.state.shouldRecord ? () => null : this.state.play ? () => null : this.playWav}
           >
             <i className="fas fa-play ibutton" />
@@ -106,11 +106,11 @@ class Record extends Component {
               this.state.shouldRecord
                 ? "btn-disabled"
                 : this.state.blob === undefined
-                ? "btn-disabled"
-                : this.state.play
-                ? "btn-disabled"
-                : null
-            }`}
+                  ? "btn-disabled"
+                  : this.state.play
+                    ? "btn-disabled"
+                    : null
+              }`}
             onClick={this.state.shouldRecord ? () => null : this.state.play ? () => null : this.onNext}
           >
             <i className="fas fa-forward ibutton-next" />
@@ -194,11 +194,25 @@ class Record extends Component {
   processBlob = blob => {
     getAudioLen(this.uuid, blob)
       .then(res => res.json())
-      .then(res =>
-        this.setState({
-          audioLen: res.data.audio_len
-        })
-      );
+      .then(res => {
+        if (res.data === undefined) {
+          // alert("There was an error on server");
+          return this.setState({
+            shouldRecord: false,
+            displayWav: false,
+            blob: undefined,
+            promptNum: 0,
+            totalTime: 0,
+            totalCharLen: 0,
+            audioLen: 0,
+            play: false
+          });
+        } else {
+          return this.setState({
+            audioLen: res.data.audio_len
+          });
+        }
+      });
     this.setState({
       blob: blob
     });
@@ -244,10 +258,10 @@ class Record extends Component {
 
     // next prompt
     if (event.keyCode === 39) {
-        if (!this.state.play) {
-          this.onNext();
-        }
-     }
+      if (!this.state.play) {
+        this.onNext();
+      }
+    }
   };
 
   recordHandler = () => {

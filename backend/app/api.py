@@ -46,10 +46,11 @@ class AudioAPI:
             trimmed_sound = Audio.trim_silence(path)
             Audio.save_audio(path, trimmed_sound)
 
-            res = DB.save_audio(wav_file_id, prompt, 'english', uuid)
+            audio_len = Audio.get_audio_len(trimmed_sound)
+            char_len = len(prompt)
+
+            res = DB.save_audio(wav_file_id, prompt, 'korean', uuid, audio_len, char_len)
             if res.success:
-                audio_len = Audio.get_audio_len(trimmed_sound)
-                char_len = len(prompt)
                 res = DB.update_user_metrics(uuid, audio_len, char_len)
                 if res.success:
                     return response(True)

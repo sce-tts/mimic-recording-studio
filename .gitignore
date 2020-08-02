@@ -31,3 +31,5 @@ tmp/
 logs
 __pycache__
 build/
+chrome.ccp
+filelists*
