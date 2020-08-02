@@ -36,7 +36,7 @@ class UserModel(Model):
     total_time_spoken = FloatField(default=0.0)
     len_char_spoken = IntegerField(default=0)
     # TODO: language support, change this from default
-    language = CharField(default='english')
+    language = CharField(default='korean')
     created_date = DateTimeField(default=datetime.datetime.now)
 
     class Meta:
@@ -56,6 +56,8 @@ class AudioModel(Model):
     audio_id = CharField()
     prompt = CharField()
     language = CharField()
+    time = FloatField(default=0.0)
+    len_char = IntegerField(default=0)
     user = ForeignKeyField(UserModel, backref="user")
     created_date = DateTimeField(default=datetime.datetime.now)
 
@@ -126,13 +128,15 @@ class DB:
 
     @staticmethod
     def save_audio(audio_id: str, prompt: str,
-                   language: str, uuid: str) -> response:
+                   language: str, uuid: str, time: float, char_len: int) -> response:
         try:
             user = DB.UserModel.get(UserModel.uuid == uuid)
             if user:
                 DB.AudioModel.create(
                     audio_id=audio_id,
                     prompt=prompt,
+                    time=time,
+                    len_char=char_len,
                     language=language,
                     user=user
                 )
