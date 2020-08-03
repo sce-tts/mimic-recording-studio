@@ -1,3 +1,7 @@
+이 프로젝트는 [MycroftAI/mimic-recording-studio](https://github.com/MycroftAI/mimic-recording-studio)를 포크하여, 한국정보화진흥원 AI Hub의 [한국어 대화 텍스트 데이터](http://www.aihub.or.kr/aidata/85), [한국어-영어 번역(병렬) 말뭉치 텍스트 데이터](http://www.aihub.or.kr/aidata/87)를 바탕으로 한국어 코퍼스를 추가한 저장소입니다.
+
+---
+
 # Mimic Recording Studio
 
 ![demo](./img/demo.gif)
