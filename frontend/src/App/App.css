@@ -262,6 +262,7 @@ hr {
 }
 
 .btn {
+  border-style: none;
   border-radius: 4px;
   padding: 0.75em 1.75em;
   font-size: 1em;
@@ -276,6 +277,7 @@ hr {
 }
 
 .btn-next {
+  border-style: none;
   border-radius: 4px;
   /* margin: 10px 0; */
   padding: 0.75em 1.75em;
@@ -455,6 +457,7 @@ input::placeholder {
 }
 
 #phrase {
+  word-break: keep-all;
   background-color: #222222;
   color: #FD9E66; /* orange */
   font-size: 2em;

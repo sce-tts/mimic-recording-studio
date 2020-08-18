@@ -16,7 +16,12 @@ services:
     container_name: mrs-frontend
     build:
       context: ./frontend/
+    command: bash -c "serve -s -l 3000 build"
     ports:
-     - "3000:3000"
+      - "3000:3000"
     volumes:
      - ./frontend/:/src
+     - node_modules:/src/node_modules
+
+volumes:
+  node_modules:
