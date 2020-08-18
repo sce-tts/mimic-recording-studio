@@ -84,7 +84,7 @@ class Record extends Component {
             : "[Spacebar] to Start Recording [R] to review [->] for next"}
         </div>
         <div id="controls">
-          <a
+          <button
             id="btn_Play"
             className={`btn btn-play ${
               this.state.shouldRecord
@@ -99,8 +99,8 @@ class Record extends Component {
           >
             <i className="fas fa-play ibutton" />
             Review
-          </a>
-          <a
+          </button>
+          <button
             id="btn_Next"
             className={`btn-next ${
               this.state.shouldRecord
@@ -115,7 +115,7 @@ class Record extends Component {
           >
             <i className="fas fa-forward ibutton-next" />
             Next
-          </a>
+          </button>
         </div>
       </div>
     );
@@ -230,6 +230,7 @@ class Record extends Component {
     if (event.keyCode === 32) {
       if (!this.state.shouldRecord) {
         event.preventDefault();
+        this.reset();
         this.recordHandler();
       }
     }
@@ -237,18 +238,7 @@ class Record extends Component {
     // esc key code
     if (event.keyCode === 27) {
       event.preventDefault();
-
-      // resets all states
-      this.setState({
-        shouldRecord: false,
-        displayWav: false,
-        blob: undefined,
-        promptNum: 0,
-        totalTime: 0,
-        totalCharLen: 0,
-        audioLen: 0,
-        play: false
-      });
+      this.reset();
     }
 
     // play wav
@@ -262,6 +252,17 @@ class Record extends Component {
         this.onNext();
       }
     }
+  };
+
+  reset = () => {
+    // resets all states
+    this.setState({
+      shouldRecord: false,
+      displayWav: false,
+      blob: undefined,
+      audioLen: 0,
+      play: false
+    });
   };
 
   recordHandler = () => {

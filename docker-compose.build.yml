@@ -1,0 +1,9 @@
+version: '3'
+services:
+  frontend-build:
+    container_name: mrs-frontend-build
+    build:
+      context: ./frontend/
+    command: bash -c "yarn install && yarn build"
+    volumes:
+     - ./frontend/:/src

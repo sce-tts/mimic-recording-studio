@@ -52,7 +52,7 @@ class Wave extends Component {
 Wave.propTypes = {
     className: PropTypes.string,
     waveColor: PropTypes.string,
-    blob: PropTypes.blob,
+    blob: PropTypes.instanceOf(window.Blob),
     play: PropTypes.bool,
     onFinish: PropTypes.func
 }
