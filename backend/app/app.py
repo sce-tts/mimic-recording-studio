@@ -1,9 +1,17 @@
+import os
+import sys
+
 from flask import Flask, jsonify, request
 from flask.views import MethodView
 from flask_cors import CORS
 from .api import UserAPI, PromptAPI, AudioAPI
 
-app = Flask(__name__)
+if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+    STATIC_FOLDER = os.path.join(sys._MEIPASS, 'frontend/build')
+else:
+    STATIC_FOLDER = '../../frontend/build'
+
+app = Flask(__name__, static_folder=STATIC_FOLDER, static_url_path="/")
 CORS(app)
 
 user_api = UserAPI()
@@ -97,3 +105,8 @@ app.add_url_rule(
     view_func=prompt_view,
     methods=['GET']
 )
+
+@app.route('/')
+@app.route('/record')
+def frontend():
+    return app.send_static_file("index.html")

@@ -4,6 +4,7 @@ from .protocol import response
 from .file_system import AudioFS, PromptsFS, temp_path
 from .audio import Audio
 import random
+import traceback
 
 
 class UserAPI:
@@ -57,6 +58,7 @@ class AudioAPI:
             return response(False)
         except Exception as e:
             # TODO: log Exception
+            traceback.print_exc()
             print(e)
             return response(False)
 
