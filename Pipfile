@@ -1,0 +1,33 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+peewee = "*"
+pydub = "*"
+gunicorn = "*"
+hgtk = "*"
+six = "*"
+Flask = "*"
+Flask-Cors = "*"
+pyinstaller = "*"
+
+[dev-packages]
+
+[scripts]
+build-server = """
+pyinstaller --noconfirm --workpath ./build/server --onefile \
+--name server
+--add-data "frontend/build;frontend/build" \
+backend/run.py
+"""
+build-ljs-converter = """
+pyinstaller --noconfirm --workpath ./build/ljs-converter --onefile \
+--name ljs-converter
+backend/generate_ljs_audio_text.py
+"""
+server = "python -u ./backend/run.py"
+
+[requires]
+python_version = "3.8"

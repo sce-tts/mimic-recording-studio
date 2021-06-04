@@ -8,10 +8,11 @@ import os
 from subprocess import DEVNULL
 from .protocol import response
 
+MIMIC_BASE_DIR = os.environ["MIMIC_BASE_DIR"] if "MIMIC_BASE_DIR" in os.environ else os.path.dirname(os.path.abspath(__file__))
 corpus_name = os.environ["CORPUS"]
 
 prompts_dir = prompts_path = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
+    MIMIC_BASE_DIR,
     "../prompts/"
 )
 os.makedirs(prompts_dir, exist_ok=True)
@@ -22,13 +23,13 @@ prompts_path = os.path.join(
 )
 
 audio_dir = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
+    MIMIC_BASE_DIR,
     "../audio_files/"
 )
 os.makedirs(audio_dir, exist_ok=True)
 
 temp_path = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
+    MIMIC_BASE_DIR,
     "../tmp/"
 )
 os.makedirs(temp_path, exist_ok=True)
@@ -62,7 +63,7 @@ class AudioFS:
                     same = True
 
         if not same:
-            with open(path, 'a') as f:
+            with open(path, 'a', encoding="utf-8") as f:
                 f.write(data)
 
     @staticmethod
@@ -77,7 +78,7 @@ class AudioFS:
 class PromptsFS:
     def __init__(self):
         self.data = []
-        with open(prompts_path, 'r') as f:
+        with open(prompts_path, 'r', encoding="utf-8") as f:
             prompts = csv.reader(f, delimiter="\t")
             for p in prompts:
                 self.data.append(p[0])

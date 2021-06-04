@@ -12,13 +12,15 @@ from peewee import (
     AutoField
 )
 
+MIMIC_BASE_DIR = os.environ["MIMIC_BASE_DIR"] if "MIMIC_BASE_DIR" in os.environ else os.path.dirname(os.path.abspath(__file__))
 
 # define paths and directories
 mimic_studio_dir = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
+    MIMIC_BASE_DIR,
     "../db"
 )
 os.makedirs(mimic_studio_dir, exist_ok=True)
+
 mimic_studio_db_path = os.path.join(
     mimic_studio_dir,
     "mimicstudio.db"

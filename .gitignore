@@ -28,3 +28,6 @@ logs
 __pycache__
 chrome.ccp
 filelists*
+*.spec
+build/
+dist/
