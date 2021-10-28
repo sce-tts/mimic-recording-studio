@@ -1,9 +1,5 @@
 이 저장소는 SCE-TTS 프로젝트에서 사용하기 위해 [MycroftAI/mimic-recording-studio](https://github.com/MycroftAI/mimic-recording-studio)를 포크하여, 한국정보화진흥원 AI Hub의 [한국어 대화 텍스트 데이터](http://www.aihub.or.kr/aidata/85), [한국어-영어 번역(병렬) 말뭉치 텍스트 데이터](http://www.aihub.or.kr/aidata/87)를 바탕으로 한국어 코퍼스를 추가한 저장소입니다.
 
-> 현재 한국정보화진흥원 [AI Hub](http://www.aihub.or.kr/)에서 제공하는 [한국어 대화 텍스트 데이터](http://www.aihub.or.kr/aidata/85)에 개인정보보호를 위한 비식별처리가 완료되지 않은 데이터가 일부 포함된 상태임이 확인되었습니다.  
-> 이에 배포중인 한국어 코퍼스에 대하여 배포를 중단합니다.
-> 추후 관련 내용에 대하여 검수 후 재공개 예정입니다.
-
 ---
 
 # Mimic Recording Studio
